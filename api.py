@@ -6,7 +6,7 @@ import requests
 from time import sleep
 
 
-API_KEY = ""    # Ask for your API key: https://web.plant.id/api-access-request/
+API_KEY = "SvVQtc0lDhpQRYqEEXqo4DfnL1FZrkdA6Vpyf7GGXmwFVhMrno"    # Ask for your API key: https://web.plant.id/api-access-request/
 
 
 def encode_file(file_name):
@@ -71,9 +71,10 @@ def get_leaf():
     if request.method == 'POST':
         data = request.get_json()
         img = data['img']
+        img.save("img.jpg")
     res = identify_plant([img])
     
     return res["suggestions"][0]["plant_details"]["common_names"]
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
 
